@@ -16,8 +16,11 @@ for index, row in df.iterrows():
     # Uses RGB colors
     pdf.cell(w=0, h=12, txt=row['Topic'], align="L", ln=1) 
     # align=aligns text on the left, right or middle of page, ln=break line, border=1 adds border
-    pdf.line(10, 21, 200, 21)
+    # pdf.line(10, 21, 200, 21)
     # Uses coordinates (x1, y1, x2, y2) to place the line
+
+    for y in range(20, 298, 10):
+        pdf.line(10, y, 200, y)
 
     pdf.ln(265)
     # Adds breaklines
@@ -26,7 +29,6 @@ for index, row in df.iterrows():
     pdf.set_text_color(180, 180, 180)
     pdf.cell(w=0, h=10, txt=row['Topic'], align="R") 
     # Sets the format for the footer
-
 
     for i in range(row['Pages'] - 1):
         # Repeats the loop based on the range
@@ -37,5 +39,8 @@ for index, row in df.iterrows():
         pdf.set_font(family="Times", style="I", size=8)
         pdf.set_text_color(180, 180, 180)
         pdf.cell(w=0, h=10, txt=row['Topic'], align="R") 
+
+        for y in range(20, 298, 10):
+            pdf.line(10, y, 200, y)
 
 pdf.output("output.pdf") 
